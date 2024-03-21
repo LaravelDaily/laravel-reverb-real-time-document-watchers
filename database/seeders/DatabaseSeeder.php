@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Document;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -20,5 +21,11 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test Admin',
             'email' => 'admin@admin.com',
         ]);
+
+        User::factory()
+            ->count(10)
+            ->withAvatar()
+            ->has(Document::factory())
+            ->create();
     }
 }
