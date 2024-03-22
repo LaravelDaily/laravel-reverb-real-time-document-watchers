@@ -17,10 +17,12 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test Admin',
-            'email' => 'admin@admin.com',
-        ]);
+        User::factory()
+            ->withAvatar()
+            ->create([
+                'name' => 'Test Admin',
+                'email' => 'admin@admin.com',
+            ]);
 
         User::factory()
             ->count(10)

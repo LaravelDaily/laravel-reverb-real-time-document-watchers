@@ -15,7 +15,7 @@ class DocumentFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'title' => $this->faker->word(),
+            'title' => $this->faker->sentence(),
             'description' => $this->faker->paragraphs(5, true),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),

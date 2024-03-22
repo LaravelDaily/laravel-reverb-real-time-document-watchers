@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -37,8 +38,11 @@ class UserFactory extends Factory
     public function withAvatar(): Factory|UserFactory
     {
         return $this->afterCreating(function (User $user) {
-            $image = Storage::put('avatars/', fake()->image);
-            $user->update(['avatar' => $image]);
+            $url = "https://ui-avatars.com/api/?name=" . $user->name;
+            $contents = Http::get($url)->body();
+            $name = Str::random(10) . '.png';
+            Storage::disk('public')->put($name, $contents);
+            $user->update(['avatar' => $name]);
         });
     }
 
