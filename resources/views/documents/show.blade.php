@@ -57,7 +57,7 @@
                     document.getElementById('documentViewing').innerHTML += html;
                 })
                 .leaving((user) => {
-                    // Remove the user from the list once he leaves
+                    // Remove users that left the document
                     document.getElementById('live-user-' + user.id).remove();
                 });
         });
